@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public void Delete(Brand entity)
         {
-            using (RentACarContext context=new RentACarContext)
+            using (RentACarContext context=new RentACarContext())
             {
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
@@ -50,7 +50,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         public void Update(Brand entity)
         {
-            using (RentACarContext context =new RentACarContext)
+            using (RentACarContext context =new RentACarContext())
             {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;
