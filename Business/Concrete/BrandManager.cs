@@ -36,9 +36,9 @@ namespace Business.Concrete
             return _brandDal.GetAll();
         }
 
-        public List<Car> GetById(int id)
+        public List<Brand> GetById(int id)
         {
-            throw new NotImplementedException();
+            return _brandDal.GetAll(p => p.BrandId == id);
         }
 
         public void Update(Brand brand)
