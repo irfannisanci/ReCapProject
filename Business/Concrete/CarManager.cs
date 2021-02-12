@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,41 +17,43 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            if (car.DailyPrice>0)
+            if (car.DailyPrice<0)
             {
-                _carDal.Add(car);
+                return new ErrorResult( "Ücret sıfırdan küçük olamaz.");
             }
-            else
-            {
-                Console.WriteLine("Eksik bilgi");
-            }
+            
+            _carDal.Add(car);
+
+            return new Result(true, "Eklendi");
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+            return new SuccessResult("Silindi");
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),"Araçlar Listelendi");
         }
 
-        public List<Car> GetById(int id)
+        public IDataResult<List<Car>> GetById(int id)
         {
-            return _carDal.GetAll(p => p.ColorId == id);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == id));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return _carDal.GetCarDetailIs();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailIs());
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+            return new SuccessResult("Güncellendi");
         }
     }
 }

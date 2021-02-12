@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -23,7 +24,7 @@ namespace ConsoleUI
             //ColorAddTest(colorManager);
             //ColorDeleteTest(colorManager);
             //ColorUpdateTest(colorManager);
-            //ColorGetAllTest(colorManager);
+            ColorGetAllTest(colorManager);
             //ColorGetByIdTest(colorManager);
 
             //BrandAddTest(brandManager);
@@ -35,9 +36,17 @@ namespace ConsoleUI
 
         private static void BrandgetByIdTest(BrandManager brandManager)
         {
-            foreach (var brand in brandManager.GetById(6))
+            var result = brandManager.GetById(6);
+            if (result.Success==true)
             {
-                Console.WriteLine(brand.BrandName);
+                foreach (var brand in brandManager.GetById(6).Data)
+                {
+                    Console.WriteLine(brand.BrandName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
 
@@ -53,9 +62,17 @@ namespace ConsoleUI
 
         private static void BrandGetAllTest(BrandManager brandManager)
         {
-            foreach (var brand in brandManager.GetAll())
+            var result = brandManager.GetAll();
+            if (result.Success==true)
             {
-                Console.WriteLine(brand.BrandId + "/" + brand.BrandName);
+                foreach (var brand in brandManager.GetAll().Data)
+                {
+                    Console.WriteLine(brand.BrandId + "/" + brand.BrandName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
 
@@ -66,17 +83,29 @@ namespace ConsoleUI
 
         private static void ColorGetByIdTest(ColorManager colorManager)
         {
-            foreach (var color in colorManager.GetById(2))
+            var result = colorManager.GetById(2);
+            if (result.Success==true)
             {
-                Console.WriteLine(color.ColorName);
+                foreach (var color in colorManager.GetById(2).Data)
+                {
+                    Console.WriteLine(color.ColorName);
+                }
             }
         }
 
         private static void ColorGetAllTest(ColorManager colorManager)
         {
-            foreach (var color in colorManager.GetAll())
+            var result = colorManager.GetAll();
+            if (result.Success==true)
             {
-                Console.WriteLine(color.ColorId + "/" + color.ColorName);
+                foreach (var color in colorManager.GetAll().Data)
+                {
+                    Console.WriteLine(color.ColorId + "/" + color.ColorName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
 
@@ -107,17 +136,33 @@ namespace ConsoleUI
 
         private static void GetByIdTest(CarManager carManager)
         {
-            foreach (var car in carManager.GetById(1))
+            var result = carManager.GetById(1);
+            if (result.Success==true)
             {
-                Console.WriteLine(car.CarName + "/" + car.Description);
+                foreach (var car in carManager.GetById(1).Data)
+                {
+                    Console.WriteLine(car.CarName + "/" + car.Description);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
 
         private static void GetAllTest(CarManager carManager)
         {
-            foreach (var car in carManager.GetAll())
+            var result = carManager.GetAll();
+            if (result.Success==true)
             {
-                Console.WriteLine(car.Id + "/" + car.BrandId + "/" + car.ColorId + "/" + car.CarName + "/" + car.DailyPrice + "/" + car.Description);
+                foreach (var car in carManager.GetAll().Data)
+                {
+                    Console.WriteLine(car.Id + "/" + car.BrandId + "/" + car.ColorId + "/" + car.CarName + "/" + car.DailyPrice + "/" + car.Description);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
 
@@ -128,9 +173,17 @@ namespace ConsoleUI
 
         private static void GetCarDetailsTest(CarManager carManager)
         {
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success==true)
             {
-                Console.WriteLine(car.CarName + "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+                foreach (var car in carManager.GetCarDetails().Data)
+                {
+                    Console.WriteLine(car.CarName + "/" + car.BrandName + "/" + car.ColorName + "/" + car.DailyPrice);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
     }
