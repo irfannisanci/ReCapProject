@@ -15,7 +15,7 @@ namespace ConsoleUI
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             //GetAllTest(carManager);
             //CarAddTest(carManager);
-            // GetCarDetailsTest(carManager);
+            //GetCarDetailsTest(carManager);
             //GetByIdTest(carManager);
             //UpdateTest(carManager);
             //DeleteTest(carManager);
@@ -61,7 +61,7 @@ namespace ConsoleUI
 
         private static void BrandAddTest(BrandManager brandManager)
         {
-            brandManager.Add(new Brand { BrandName = "Mercedes" });
+            brandManager.Add(new Brand { BrandName = "Var" });
         }
 
         private static void ColorGetByIdTest(ColorManager colorManager)
@@ -92,7 +92,7 @@ namespace ConsoleUI
 
         private static void ColorAddTest(ColorManager colorManager)
         {
-            colorManager.Add(new Color { ColorName = "Gri" });
+            colorManager.Add(new Color { ColorName = "Kırmızı" });
         }
 
         private static void DeleteTest(CarManager carManager)
