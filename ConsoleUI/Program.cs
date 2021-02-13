@@ -14,6 +14,9 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            UserManager userManager = new UserManager(new EfUserDal());
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
             //GetAllTest(carManager);
             //CarAddTest(carManager);
             //GetCarDetailsTest(carManager);
@@ -24,7 +27,7 @@ namespace ConsoleUI
             //ColorAddTest(colorManager);
             //ColorDeleteTest(colorManager);
             //ColorUpdateTest(colorManager);
-            ColorGetAllTest(colorManager);
+            //ColorGetAllTest(colorManager);
             //ColorGetByIdTest(colorManager);
 
             //BrandAddTest(brandManager);
@@ -32,6 +35,23 @@ namespace ConsoleUI
             //BrandUpdateTest(brandManager);
             //BrandGetAllTest(brandManager);
             //BrandgetByIdTest(brandManager);
+
+            //UserAddTest(userManager);
+
+
+            //CustomerAddTest(customerManager);
+
+            rentalManager.Add(new Rental { CarId = 1, CustomerId = 1, RentDate =  DateTime.Now, ReturnDate = new DateTime(2021,2,15) });
+        }
+
+        private static void CustomerAddTest(CustomerManager customerManager)
+        {
+            customerManager.Add(new Customer { UserId = 1, CompanyName = "TigaSoft" });
+        }
+
+        private static void UserAddTest(UserManager userManager)
+        {
+            userManager.Add(new User { FirstName = "İrfan", LastName = "Nişancı", Email = "irfan.nisanci@hotmail.com", Password = "123456" });
         }
 
         private static void BrandgetByIdTest(BrandManager brandManager)
