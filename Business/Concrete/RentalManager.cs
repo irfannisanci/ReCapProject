@@ -41,7 +41,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetById(int id)
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(p => p.RentalsId == id));
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(p => p.Id == id));
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
